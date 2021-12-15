@@ -1,8 +1,8 @@
 import { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 export default function Login({authenticatedUser, setAuthenticatedUser}) {
   
-
+  const navigate = useNavigate()
     const [user, setUser] = useState({
         email: "",
         password: "",
@@ -23,15 +23,17 @@ export default function Login({authenticatedUser, setAuthenticatedUser}) {
           body: JSON.stringify({...user}),
         }
       
-        fetch("http://localhost:3030/login", fetchOptions)
+        fetch("http://localhost:4000/login", fetchOptions)
           .then(res => res.json())
           .then(loginData => {
             const token = loginData.token
-      
+      console.log("Inside login: ", loginData)
             if (token) {
               setAuthenticatedUser(token)
       
               localStorage.setItem("token", JSON.stringify(token))
+
+              navigate("/app")
             }
           })
       }
@@ -42,7 +44,6 @@ export default function Login({authenticatedUser, setAuthenticatedUser}) {
         setUser({ ...user, [name]: value });
       };
     return(
-        <>
              <main>
         <form className="form-stack" onSubmit={handleSubmit}>
           <h2>Sign In</h2>
@@ -58,6 +59,5 @@ export default function Login({authenticatedUser, setAuthenticatedUser}) {
           <button type="submit">Log In</button>
         </form>
       </main>
-        </>
     )
 }

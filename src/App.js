@@ -1,29 +1,59 @@
+import { useEffect, useState } from "react";
+import { Route, Routes } from "react-router-dom";
+import LoggedIn from "./Pages/LoggedIn";
+import NotLoggedIn from "./Pages/NotLoggedIn";
+import { useNavigate } from "react-router-dom";
+import MembersLogIn from "./Pages/MembersLogIn";
 
 export default function App() {
+const navigate = useNavigate()
   const [authenticatedUser, setAuthenticatedUser] = useState(null);
-  // const [posts, setPosts]= useState({})
+  const [profiles, setProfiles] = useState([]);
+
+  const API_URL = process.env.REACT_APP_API_URL;
+
   console.log({ authenticatedUser });
-  function fetchSignUp() {
-    fetch("http://localhost:3030/register")
+function handleLogoutClick() {
+  localStorage.removeItem("token")
+
+  setAuthenticatedUser(null)
+
+  navigate("/")
+}
+
+  function fetchProfiles() {
+    fetch(`${API_URL}/profile`)
       .then((res) => res.json())
       .then((data) => {
-        setAuthenticatedUser(data);
-      });
-  }
-  function fetchSignIn() {
-    fetch("http://localhost:3030/login")
-      .then((res) => res.json())
-      .then((data) => {
-        setAuthenticatedUser(data);
+        setProfiles(data);
       });
   }
   useEffect(() => {
-    fetchSignIn();
-    fetchSignUp();
+    fetchProfiles();
+    if (!authenticatedUser) {
+      const token = localStorage.getItem("token")
+
+    if (token) {
+      setAuthenticatedUser(token)
+navigate("/app")
+    } else {
+      navigate("/")
+    }
+    }
   }, []);
   return (
-    <div className="three-column-grid">
-      
-    </div>
+    <Routes>
+      <Route
+        path="/"
+        element={
+          <NotLoggedIn
+            authenticatedUser={authenticatedUser}
+            setAuthenticatedUser={setAuthenticatedUser}
+          />
+        }
+      />
+      <Route  path="/app" element={<LoggedIn profiles={profiles} handleLogoutClick={handleLogoutClick}/>}/>
+    <Route path="/MembersLogIn" element={<MembersLogIn authenticatedUser={authenticatedUser} setAuthenticatedUser={setAuthenticatedUser} />}/>
+    </Routes>
   );
 }

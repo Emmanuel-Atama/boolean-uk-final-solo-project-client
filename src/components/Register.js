@@ -1,23 +1,31 @@
 import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
-export default function Register({authenticatedUser, setAuthenticatedUser}) {
+export default function Register(props) {
+  const navigate = useNavigate()
 
+  const { authenticatedUser, setAuthenticatedUser, handleLoginClick } = props;
   const [user, setUser] = useState({
     email: "",
     password: "",
-  })
+    username: "",
+    gender:"",
+    city: "",
+    area: "",
+    sexuality: "",
+  });
 
-  console.log({authenticatedUser})
+  console.log({ authenticatedUser });
 
   useEffect(() => {
-    const userAsString = localStorage.getItem("user")
+    const userAsString = localStorage.getItem("user");
 
     if (userAsString) {
-      const user = JSON.parse(userAsString)
+      const user = JSON.parse(userAsString);
 
-      setAuthenticatedUser(user)
+      setAuthenticatedUser(user);
     }
-  }, [setAuthenticatedUser])
+  }, [setAuthenticatedUser]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -27,14 +35,14 @@ export default function Register({authenticatedUser, setAuthenticatedUser}) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(user),
+      body: JSON.stringify({ ...user }),
     };
 
-    fetch("http://localhost:3030/register", fetchOptions)
+    fetch("http://localhost:4000/register", fetchOptions)
       .then((res) => res.json())
       .catch(console.log)
-      .then((registerData) => {
-        const token = registerData.token;
+      .then((data) => {
+        const token = data.token;
 
         if (token) {
           setAuthenticatedUser(token);
@@ -64,8 +72,38 @@ export default function Register({authenticatedUser, setAuthenticatedUser}) {
             name="password"
             onChange={handleChange}
           />
-          <button type="submit">Sign Up</button>
+          <label htmlFor="username"> Username </label>
+          <input
+            type="username"
+            id="username"
+            name="username"
+            onChange={handleChange}
+          />
+          <label> Gender </label>
+          <select name="gender" id="gender" onChange={handleChange}>
+            <option>--Please choose an option--</option>
+            <option value="man">Man</option>
+            <option value="woman">Woman</option>
+            <option value="IDK">Prefer Not To Say</option>
+          </select>
+          <label htmlFor="city"> City </label>
+          <input type="city" id="city" name="city" onChange={handleChange} />
+          <label htmlFor="area"> Area </label>
+          <input type="area" id="area" name="area" onChange={handleChange} />
+          <label> Sexual Orientation </label>
+          <select name="sexuality" id="sexuality" onChange={handleChange}>
+            <option Reqiuired>--Please choose an option--</option>
+            <option value="straight">Straight</option>
+            <option value="gay">Gay</option>
+            <option value="lesbian">Lesbian</option>
+            <option value="bisexual">Bi-Sexual</option>
+            <option value="IDK">Prefer Not To Say</option>
+          </select>
+          <button type="submit" className="button-style">
+            Sign Up
+          </button>
         </form>
+        <h3>Already a member? <Link to="/MembersLogIn"><i>Login</i></Link></h3>
         {/* {authenticatedUser && <div>Secrets</div>} */}
       </main>
     </>
