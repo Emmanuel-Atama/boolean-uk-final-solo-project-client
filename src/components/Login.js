@@ -10,6 +10,8 @@ export default function Login({authenticatedUser, setAuthenticatedUser}) {
     
       console.log({authenticatedUser})
 
+      const API_URL = process.env.REACT_APP_API_URL;
+
     const handleSubmit = event => {
         event.preventDefault()
       
@@ -23,7 +25,7 @@ export default function Login({authenticatedUser, setAuthenticatedUser}) {
           body: JSON.stringify({...user}),
         }
       
-        fetch("http://localhost:4000/login", fetchOptions)
+        fetch(`${API_URL}/login`, fetchOptions)
           .then(res => res.json())
           .then(loginData => {
             const token = loginData.token
@@ -56,7 +58,7 @@ export default function Login({authenticatedUser, setAuthenticatedUser}) {
             name="password"
             onChange={handleChange}
           />
-          <button type="submit">Log In</button>
+          <button type="submit">Log In With Email</button>
         </form>
       </main>
     )

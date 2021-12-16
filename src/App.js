@@ -4,11 +4,13 @@ import LoggedIn from "./Pages/LoggedIn";
 import NotLoggedIn from "./Pages/NotLoggedIn";
 import { useNavigate } from "react-router-dom";
 import MembersLogIn from "./Pages/MembersLogIn";
+import Register from "./components/Register";
 
 export default function App() {
 const navigate = useNavigate()
   const [authenticatedUser, setAuthenticatedUser] = useState(null);
   const [profiles, setProfiles] = useState([]);
+  const [usersRequest, setUsersRequest] = useState([])
 
   const API_URL = process.env.REACT_APP_API_URL;
 
@@ -52,8 +54,9 @@ navigate("/app")
           />
         }
       />
-      <Route  path="/app" element={<LoggedIn profiles={profiles} handleLogoutClick={handleLogoutClick}/>}/>
+      <Route  path="/app" element={<LoggedIn profiles={profiles} handleLogoutClick={handleLogoutClick} setUsersRequest={setUsersRequest}/>}/>
     <Route path="/MembersLogIn" element={<MembersLogIn authenticatedUser={authenticatedUser} setAuthenticatedUser={setAuthenticatedUser} />}/>
+    <Route path="/NotLoggedIn" element = {<Register authenticatedUser={authenticatedUser} setAuthenticatedUser={setAuthenticatedUser}/> }/>
     </Routes>
   );
 }

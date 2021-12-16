@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function Register(props) {
-  const navigate = useNavigate()
 
-  const { authenticatedUser, setAuthenticatedUser, handleLoginClick } = props;
+  const { authenticatedUser, setAuthenticatedUser } = props;
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -15,6 +14,8 @@ export default function Register(props) {
     sexuality: "",
   });
 
+  const API_URL = process.env.REACT_APP_API_URL;
+  
   console.log({ authenticatedUser });
 
   useEffect(() => {
@@ -38,7 +39,7 @@ export default function Register(props) {
       body: JSON.stringify({ ...user }),
     };
 
-    fetch("http://localhost:4000/register", fetchOptions)
+    fetch(`${API_URL}/register`, fetchOptions)
       .then((res) => res.json())
       .catch(console.log)
       .then((data) => {
@@ -104,7 +105,6 @@ export default function Register(props) {
           </button>
         </form>
         <h3>Already a member? <Link to="/MembersLogIn"><i>Login</i></Link></h3>
-        {/* {authenticatedUser && <div>Secrets</div>} */}
       </main>
     </>
   );

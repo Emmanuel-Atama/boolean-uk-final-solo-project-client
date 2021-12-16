@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Login from "../components/Login";
 
 export default function MembersLogIn(props) {
@@ -12,6 +13,8 @@ export default function MembersLogIn(props) {
         </p>
       </header>
       <Login authenticatedUser={authenticatedUser} setAuthenticatedUser={setAuthenticatedUser} />
+
+      <h3 className="center-text-align">Back To <Link to="/NotLoggedIn">SignUp</Link> Page</h3>
         </>
     )
 }

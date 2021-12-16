@@ -1,8 +1,9 @@
-import Login from "../components/Login";
+
 import Register from "../components/Register";
 export default function NotLoggedIn({
   authenticatedUser,
   setAuthenticatedUser,
+  
 }) {
   return (
     <>
@@ -14,10 +15,6 @@ export default function NotLoggedIn({
           </p>
         </header>
         <aside className="left-aside">
-          <Login
-            authenticatedUser={authenticatedUser}
-            setAuthenticatedUser={setAuthenticatedUser}
-          />
         </aside>
         <main className="main">
           <Register
