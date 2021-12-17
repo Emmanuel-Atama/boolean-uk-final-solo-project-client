@@ -1,8 +1,11 @@
 import { Button } from "@mui/material";
 import { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function ListOfUser(props) {
-  const { profiles, setUsersRequest } = props
+  const { profiles, setUsersRequest, images } = props
+
+  console.log("Inside Image props: ", props)
 
   const [selectedProfile, setSelectedProfile] = useState("");
   // const [senderId, setSenderId] = useState(0)
@@ -36,7 +39,23 @@ export default function ListOfUser(props) {
         setUsersRequest(requestToAdd);
       });
   };
-  // const selectedGender = new Set(profile.map((profil) => profil.gender))
+  // const selectedGender = new Set(profiles.map((profile) => profil.gender))
+
+  const navigate = useNavigate()
+
+  const { profileid } = useParams()
+  
+  const foundProfile = profiles.find((profile) =>{
+    return profile.id === parseInt(profileid)
+  })
+  
+  console.log("Inside found profile: ", profileid)
+  
+  const jumpToProfile = () => {
+    navigate(`/ViewProfile/${profileid}`)
+  };
+  
+
   return (
     <>
       <div className="two-column-grid-header">
@@ -65,11 +84,13 @@ export default function ListOfUser(props) {
             }
           })
           .map((profile, index) => {
+      // profile.images.map(image => <p>{image.url}</p>)
             const { username, gender, sexuality } = profile;
-
+// console.log("Inside images map: ", image.url)
             return (
               <div className="two-column-grid">
                 <li key={index} className="border-for-li">
+                  {/* <p>{images.url}</p> */}
                   <h3 className="h3-styling">Username: {username}</h3>
                   <p>Gender: {gender}</p>
                   <p>Sexual Orientation: {sexuality}</p>
@@ -84,7 +105,7 @@ export default function ListOfUser(props) {
                     Match With Me
                   </Button>
                   <div className="material-button">
-                    <Button variant="contained" color="success" type="submit">
+                    <Button variant="contained" color="success" type="submit" onClick={jumpToProfile}>
                       View Profile
                     </Button>
                   </div>

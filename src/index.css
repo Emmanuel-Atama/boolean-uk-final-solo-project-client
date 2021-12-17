@@ -103,14 +103,14 @@ main {
 
 .header {
   grid-area: header;
-  background-color: #fdfafd;
+  background-color: #dbeed1;
   align-items: center;
   padding: 1rem;
   border-radius: 0.25rem;
   text-align: center;
 }
 .header-style {
-  background-color: #fdfafd;
+  background-color: #ceeebc;
   align-items: center;
   height: 100px;
   border-radius: 0.25rem;
@@ -168,7 +168,12 @@ main {
 .two-column-grid {
   display: grid;
   grid-template-columns: auto auto;
-  gap: 10px;
+  gap: 20px;
+}
+.two-column-grid-profile {
+  display: grid;
+  grid-template-columns: 500px auto;
+  gap: 20px;
 }
 .two-column-grid-header {
   display: grid;
@@ -192,7 +197,7 @@ main {
 .member-cards {
   display: grid;
   grid-auto-rows: minmax(30px, auto);
-  grid-template-columns: repeat(auto-fill, 300px);
+  grid-template-columns: repeat(auto-fill, 500px);
   gap: 15px;
   justify-content: center;
   justify-items: center;
@@ -206,4 +211,8 @@ main {
 }
 .h3-styling {
   color: green;
+}
+.white-text {
+  color: green;
+  background-color: white;
 }
