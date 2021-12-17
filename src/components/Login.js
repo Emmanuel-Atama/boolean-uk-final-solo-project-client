@@ -1,3 +1,4 @@
+import { Button } from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 export default function Login({authenticatedUser, setAuthenticatedUser}) {
@@ -14,7 +15,6 @@ export default function Login({authenticatedUser, setAuthenticatedUser}) {
 
     const handleSubmit = event => {
         event.preventDefault()
-      
         console.log("Inside handleSubmit: ", { user })
       
         const fetchOptions = {
@@ -58,7 +58,8 @@ export default function Login({authenticatedUser, setAuthenticatedUser}) {
             name="password"
             onChange={handleChange}
           />
-          <button type="submit">Log In With Email</button>
+          {/* <button type="submit">Log In With Email</button> */}
+          <Button variant="contained" color="success" type="submit">Log In With Email</Button>
         </form>
       </main>
     )

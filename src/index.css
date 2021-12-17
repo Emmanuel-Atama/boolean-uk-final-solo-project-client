@@ -147,7 +147,7 @@ main {
 }
 .button-style {
   border: 1px solid white;
-  margin-top: 1rem;
+  margin-top: 2rem;
   padding: 0.5rem;
   border-radius: 0.25rem;
   background-color: rgb(188, 219, 154);
@@ -179,7 +179,7 @@ main {
   justify-content: flex-end;
 }
 .border-for-li {
-  border: 1px solid rgb(230, 222, 222);
+  border: 1px solid rgb(12, 104, 32);
   border-radius: 4px;
   padding: 8px;
   cursor: pointer;
@@ -200,4 +200,10 @@ main {
 }
 .center-text-align {
   text-align: center;
+}
+.material-button {
+  margin-top: 1rem;
+}
+.h3-styling {
+  color: green;
 }

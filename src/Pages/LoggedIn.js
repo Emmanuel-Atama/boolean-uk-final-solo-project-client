@@ -1,3 +1,4 @@
+import { Button } from "@mui/material";
 import ListOfUsers from "../components/ListOfUsers";
 export default function LoggedIn({ profiles, handleLogoutClick, setUsersRequest }) {
   return (
@@ -9,9 +10,7 @@ export default function LoggedIn({ profiles, handleLogoutClick, setUsersRequest 
             <i>...Love is right here and right now</i>
           </p>
         </section>
-        <button className="logout-button" onClick={handleLogoutClick}>
-          <strong className="logout">Log Out</strong>
-        </button>
+        <Button variant="contained" color="success" type="submit" className="logout-button" onClick={handleLogoutClick}>Log Out</Button>
       </header>
       <div className="center-profile">
         <ListOfUsers profiles={profiles} setUsersRequest={setUsersRequest}/>

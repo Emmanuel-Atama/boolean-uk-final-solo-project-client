@@ -1,6 +1,5 @@
 export default function ListOfRequest(props) {
   const { usersRequest } = props;
-  console.log("Inside Users Request:", props);
   return (
     <>
       <ul>

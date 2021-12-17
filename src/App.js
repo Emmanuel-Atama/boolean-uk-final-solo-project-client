@@ -11,10 +11,11 @@ const navigate = useNavigate()
   const [authenticatedUser, setAuthenticatedUser] = useState(null);
   const [profiles, setProfiles] = useState([]);
   const [usersRequest, setUsersRequest] = useState([])
+// const [requestEdit, setRequestEdit] = useState([])
 
   const API_URL = process.env.REACT_APP_API_URL;
 
-  console.log({ authenticatedUser });
+  console.log({ authenticatedUser, usersRequest });
 function handleLogoutClick() {
   localStorage.removeItem("token")
 

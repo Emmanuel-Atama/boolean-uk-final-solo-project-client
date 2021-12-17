@@ -1,3 +1,5 @@
+import { Button } from "@mui/material";
+
 export default function ViewProfile(props) {
   const { profiles } = props;
   return (
@@ -10,7 +12,6 @@ export default function ViewProfile(props) {
       </header>
       <ul className="cards">
         {profiles.map((profile, index) => {
-          console.log("Inside the profile map:", profile);
 
           const { username, gender, city, area, sexuality } = profile;
 
@@ -24,7 +25,7 @@ export default function ViewProfile(props) {
                 <p>Sexual Orientation: {sexuality}</p>
               </li>
               <div>
-                <button className="button-style"> Match With Me</button>
+                <Button variant="contained" color="success" className="button-style">Match With Me</Button>
               </div>
             </div>
           );

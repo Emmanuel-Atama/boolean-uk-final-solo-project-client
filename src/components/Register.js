@@ -1,3 +1,4 @@
+import { Button } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -15,8 +16,6 @@ export default function Register(props) {
   });
 
   const API_URL = process.env.REACT_APP_API_URL;
-  
-  console.log({ authenticatedUser });
 
   useEffect(() => {
     const userAsString = localStorage.getItem("user");
@@ -100,9 +99,12 @@ export default function Register(props) {
             <option value="bisexual">Bi-Sexual</option>
             <option value="IDK">Prefer Not To Say</option>
           </select>
-          <button type="submit" className="button-style">
+          {/* <button type="submit" className="button-style">
             Sign Up
-          </button>
+          </button> */}
+          <div className="material-button">
+          <Button variant="contained" color="success" type="submit" type="submit">Sign Up</Button>
+          </div>
         </form>
         <h3>Already a member? <Link to="/MembersLogIn"><i>Login</i></Link></h3>
       </main>
