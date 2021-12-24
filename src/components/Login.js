@@ -9,7 +9,7 @@ export default function Login({authenticatedUser, setAuthenticatedUser}) {
         password: "",
       })
     
-      console.log({authenticatedUser})
+      // console.log({authenticatedUser})
 
       const API_URL = process.env.REACT_APP_API_URL;
 
@@ -29,7 +29,7 @@ export default function Login({authenticatedUser, setAuthenticatedUser}) {
           .then(res => res.json())
           .then(loginData => {
             const token = loginData.token
-      console.log("Inside login: ", loginData)
+      // console.log("Inside login: ", loginData)
             if (token) {
               setAuthenticatedUser(token)
       

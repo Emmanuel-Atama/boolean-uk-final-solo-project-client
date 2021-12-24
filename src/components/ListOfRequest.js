@@ -4,7 +4,7 @@ export default function ListOfRequest(props) {
     <>
       <ul>
         {usersRequest.map((usersReques, index) => {
-          console.log("Inside Users Request Map: ", usersRequest);
+          // console.log("Inside Users Request Map: ", usersRequest);
 
           const { senderId, receiverId, accepted } = usersReques;
           return (

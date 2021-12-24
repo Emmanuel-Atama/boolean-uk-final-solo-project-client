@@ -5,7 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 export default function ListOfUser(props) {
   const { profiles, setUsersRequest, images } = props
 
-  console.log("Inside Image props: ", props)
+  // console.log("Inside Image props: ", props)
 
   const [selectedProfile, setSelectedProfile] = useState("");
   // const [senderId, setSenderId] = useState(0)

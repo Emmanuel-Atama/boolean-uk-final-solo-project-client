@@ -1,24 +1,8 @@
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
-// import { useNavigate, useParams } from "react-router-dom";
 
 export default function ViewProfile(props) {
   const { profiles } = props;
-
-// const navigate = useNavigate()
-
-// const { profileid } = useParams()
-
-// const foundProfile = profiles.find((profile) =>{
-//   return profile.id === parseInt(profileid)
-// })
-
-// console.log("Inside found profile: ", profileid)
-
-// const jumpToProfile = () => {
-//   navigate("/ViewProfile")
-// };
-
 
   return (
     <>
